@@ -1,0 +1,1 @@
+/home/rodrigo/.irssi/scripts/nicklist.pl
