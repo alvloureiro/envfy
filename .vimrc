@@ -214,11 +214,11 @@ endif
 """
 """ GIT
 """
-ab obrev Reviewed-by: Rodrigo Belem <rodrigo.belem@openbossa.org>
-ab indtrev Reviewed-by: Rodrigo Belem <ext-rodrigo.belem@nokia.com>
+ab emailrev Reviewed-by: Some User <email@email.com>
+ab oemailrev Reviewed-by: Some User <email@oemail.com>
 
-ab obsig Signed-off-by: Rodrigo Belem <rodrigo.belem@openbossa.org>
-ab indtsig Signed-off-by: Rodrigo Belem <ext-rodrigo.belem@nokia.com>
+ab emailsig Signed-off-by: Some User <email@email.com>
+ab oemailsig Signed-off-by: Some User <email@oemail.com>
 
 """
 """ Omnicpp
