@@ -1,0 +1,13 @@
+!
+! Remaps caps lock key to ctrl
+! use xev to discover the keycode
+!
+
+! caps lock to left control
+clear Lock
+keycode 66 = Control_L
+add Control = Control_L
+
+! disable left control
+keycode 37 = NoSymbol
+
