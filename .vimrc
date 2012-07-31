@@ -19,6 +19,9 @@ set nocompatible
 filetype plugin on
 filetype indent on
 
+" Set to auto read when a file is changed from the outside
+set autoread
+
 "
 "
 "
@@ -48,6 +51,12 @@ endif
 "highlight Comment ctermfg=cyan
 set background=dark
 
+if has("gui_running")
+	colorscheme evening
+endif
+
+highlight PmenuSel ctermfg=black ctermbg=white
+
 "
 " Using a backupdir under UNIX/Linux: you may want to include a line similar to
 "   find  $HOME/.vim.backupdir -name "*" -type f -mtime +60 -exec rm -f {} \;
@@ -55,6 +64,14 @@ set background=dark
 "
 " - central backup directory (has to be created)
 set backupdir =$HOME/.vim.backupdir
+
+
+"Persistent undo
+try
+	set undodir=$HOME/.vim.undodir
+	set undofile
+catch
+endtry
 
 "-------------------------------------------------------------------------------
 " Various settings
@@ -66,11 +83,12 @@ set backspace=indent,eol,start  " backspacing over everything in insert mode
 set backup                      " keep a backup file
 set browsedir=current           " which directory to use for the file browser
 set complete+=k                 " scan the files given with the 'dictionary' option
-set history=50                  " keep 50 lines of command line history
+set history=1000                " keep 1000 lines of command line history
 set hlsearch                    " highlight the last used search pattern
 set incsearch                   " do incremental searching
 "set ignorecase                  " Ignore case when searching.
 set smartcase                   " case-sensitive if search contains an uppercase character
+"set noignorecase                   " case-sensitive if search contains an uppercase character
 set listchars=tab:>.,eol:\$     " strings to use in 'list' mode
 "set mouse=a                     " enable the use of the mouse
 "set nowrap                      " do not wrap lines
@@ -82,11 +100,12 @@ set showmode                    " Show editing mode
 set smartindent                 " smart autoindenting when starting a new line
 set tabstop=4                   " number of spaces that a <Tab> counts for
 "set visualbell                  " visual bell instead of beeping
-set wildignore=*.bak,*.o,*.e,*~ " wildmenu: ignore these extensions
+set wildignore=*.bak,*.o,*.e,*~,*.obj,.git,*.pyc " wildmenu: ignore these extensions
 set wildmenu                    " command-line completion in an enhanced mode
 set encoding=utf-8              " Use UTF-8.
-set showmatch
+set showmatch                   " Show matching bracets when text indicator is over them
 set scrolloff=5                 " always have some lines of text when scrolling
+set nolazyredraw                " Don't redraw while executing macros
 
 set clipboard=unnamed
 "let @*=@a
