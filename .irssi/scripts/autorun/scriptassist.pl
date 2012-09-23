@@ -1,1 +1,0 @@
-/home/rodrigo/.irssi/scripts/scriptassist.pl

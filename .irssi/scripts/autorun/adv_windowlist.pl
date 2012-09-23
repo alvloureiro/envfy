@@ -1,1 +1,0 @@
-/home/rodrigo/.irssi/scripts/adv_windowlist.pl

@@ -1,0 +1,72 @@
+[submodule ".vim/bundle/vim-pathogen"]
+	path = .vim/bundle/vim-pathogen
+	url = git://github.com/tpope/vim-pathogen.git
+[submodule ".vim/bundle/c/clang_complete"]
+	path = .vim/bundle/c/clang_complete
+	url = git://github.com/Rip-Rip/clang_complete.git
+[submodule ".vim/bundle/general/bufexplorer"]
+	path = .vim/bundle/general/bufexplorer
+	url = git://github.com/corntrace/bufexplorer.git
+[submodule ".vim/bundle/general/ctrlp.vim"]
+	path = .vim/bundle/general/ctrlp.vim
+	url = git://github.com/kien/ctrlp.vim.git
+[submodule ".vim/bundle/general/detectindent"]
+	path = .vim/bundle/general/detectindent
+	url = git://github.com/ciaranm/detectindent.git
+[submodule ".vim/bundle/general/matchit.zip"]
+	path = .vim/bundle/general/matchit.zip
+	url = git://github.com/vim-scripts/matchit.zip.git
+[submodule ".vim/bundle/general/nerdtree"]
+	path = .vim/bundle/general/nerdtree
+	url = git://github.com/scrooloose/nerdtree.git
+[submodule ".vim/bundle/general/RelOps"]
+	path = .vim/bundle/general/RelOps
+	url = git://github.com/vim-scripts/RelOps.git
+[submodule ".vim/bundle/general/sessionman.vim"]
+	path = .vim/bundle/general/sessionman.vim
+	url = git://github.com/vim-scripts/sessionman.vim.git
+[submodule ".vim/bundle/general/undotree"]
+	path = .vim/bundle/general/undotree
+	url = git://github.com/mbbill/undotree.git
+[submodule ".vim/bundle/general/vim-nerdtree-tabs"]
+	path = .vim/bundle/general/vim-nerdtree-tabs
+	url = git://github.com/jistr/vim-nerdtree-tabs.git
+[submodule ".vim/bundle/general/vim-repeat"]
+	path = .vim/bundle/general/vim-repeat
+	url = git://github.com/tpope/vim-repeat.git
+[submodule ".vim/bundle/general/vim-surround"]
+	path = .vim/bundle/general/vim-surround
+	url = git://github.com/tpope/vim-surround.git
+[submodule ".vim/bundle/javascript/vim-json"]
+	path = .vim/bundle/javascript/vim-json
+	url = git://github.com/leshill/vim-json.git
+[submodule ".vim/bundle/misc/vim-markdown"]
+	path = .vim/bundle/misc/vim-markdown
+	url = git://github.com/tpope/vim-markdown.git
+[submodule ".vim/bundle/programming/AutoClose--Alves"]
+	path = .vim/bundle/programming/AutoClose--Alves
+	url = git://github.com/vim-scripts/AutoClose--Alves.git
+[submodule ".vim/bundle/programming/a.vim"]
+	path = .vim/bundle/programming/a.vim
+	url = git://github.com/vim-scripts/a.vim.git
+[submodule ".vim/bundle/programming/DoxygenToolkit.vim"]
+	path = .vim/bundle/programming/DoxygenToolkit.vim
+	url = git://github.com/vim-scripts/DoxygenToolkit.vim.git
+[submodule ".vim/bundle/programming/neocomplcache"]
+	path = .vim/bundle/programming/neocomplcache
+	url = git://github.com/Shougo/neocomplcache.git
+[submodule ".vim/bundle/programming/nerdcommenter"]
+	path = .vim/bundle/programming/nerdcommenter
+	url = git://github.com/scrooloose/nerdcommenter.git
+[submodule ".vim/bundle/programming/syntastic"]
+	path = .vim/bundle/programming/syntastic
+	url = git://github.com/scrooloose/syntastic.git
+[submodule ".vim/bundle/programming/tabular"]
+	path = .vim/bundle/programming/tabular
+	url = git://github.com/godlygeek/tabular.git
+[submodule ".vim/bundle/programming/tagbar"]
+	path = .vim/bundle/programming/tagbar
+	url = git://github.com/majutsushi/tagbar.git
+[submodule ".vim/bundle/programming/vim-fugitive"]
+	path = .vim/bundle/programming/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
