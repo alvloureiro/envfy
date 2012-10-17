@@ -106,19 +106,17 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+export EDITOR=vim
 
-function dmalloc { eval `command dmalloc -b $*`; }
+if [ -d "/usr/lib/icecc/bin" ] ; then
+    export ICECC_VERSION="/path/to/toolchain.tar.gz"
+fi
 
+# Debian env vars
 export DEBEMAIL=email@email.com
 export DEBFULLNAME="Some Name"
 export DEBSIGN_KEYID=AAAAAAAA
 
-export EDITOR=vim
-
-#export PYTHONSTARTUP=$HOME/.pythonrc
-
-export ICECC_VERSION="/path/to/toolchain.tar.gz"
-
-# quilt stuff
+# Quilt default configuration
 export QUILT_PATCHES=debian/patches
 export QUILT_REFRESH_ARGS="-p ab --no-timestamps --no-index"
