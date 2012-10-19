@@ -73,3 +73,6 @@
 [submodule ".vim/bundle/general/sudo.vim.git"]
 	path = .vim/bundle/general/sudo.vim.git
 	url = git://github.com/vim-scripts/sudo.vim.git
+[submodule ".vim/bundle/sysadmin/bind.vim.git"]
+	path = .vim/bundle/sysadmin/bind.vim.git
+	url = git://github.com/seveas/bind.vim.git
