@@ -6,6 +6,7 @@ sudo apt-get install vim-gtk clang exuberant-ctags byobu irssi irssi-plugin-otr 
 byobu-select-backend screen
 
 git submodule update --init
+git submodule foreach git checkout master
 
 for file in `ls -A -I .git -I .gitmodules -I setup.sh`;
 do
