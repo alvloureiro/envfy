@@ -13,6 +13,7 @@
 	call pathogen#infect('~/.vim/bundle/general')
 	call pathogen#infect('~/.vim/bundle/programming')
 	call pathogen#infect('~/.vim/bundle/c')
+	call pathogen#infect('~/.vim/bundle/java')
 	call pathogen#infect('~/.vim/bundle/javascript')
 
 	set shortmess+=filmnrxoOtT								" abbrev. of messages (avoids 'hit enter')
@@ -433,6 +434,7 @@
 		autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 		autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 		autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+		autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 		" Enable heavy omni completion.
 		if !exists('g:neocomplcache_omni_patterns')

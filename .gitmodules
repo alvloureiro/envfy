@@ -76,3 +76,6 @@
 [submodule ".vim/bundle/sysadmin/bind.vim.git"]
 	path = .vim/bundle/sysadmin/bind.vim.git
 	url = git://github.com/seveas/bind.vim.git
+[submodule ".vim/bundle/java/javacomplete.git"]
+	path = .vim/bundle/java/javacomplete.git
+	url = git://github.com/vim-scripts/javacomplete.git
