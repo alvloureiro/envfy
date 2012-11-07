@@ -10,11 +10,18 @@ git submodule foreach git checkout master
 
 for file in `ls -A -I .git -I .gitmodules -I setup.sh`;
 do
-	if [ -e $HOME/$file ] && [ $PWD/$file != `readlink -f $HOME/$file` ]; then
-		echo $PWD/$file
+	echo $PWD/$file
+
+	if [ $PWD/$file == `readlink -f $HOME/$file` ]; then
+		echo "skipping..."
+		continue
+	elif [ -e $HOME/$file ]; then
 		echo "backuping..."
 		mv $HOME/$file $HOME/$file-backup-`date +%Y%m%d%H%M%S`
 		echo "replacing..."
-		ln -sf $PWD/$file $HOME
+	else
+		echo "linking..."
 	fi
+
+	ln -sf $PWD/$file $HOME
 done
