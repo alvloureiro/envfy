@@ -1,6 +1,6 @@
 [user]
-    name = Some User
-    email = email@email.com
+    name =
+    email =
 [color]
     ui = auto
     diff = auto
