@@ -82,3 +82,12 @@
 [submodule ".vim/bundle/general/ZoomWin.git"]
 	path = .vim/bundle/general/ZoomWin.git
 	url = git://github.com/vim-scripts/ZoomWin.git
+[submodule ".tmux/tmux-powerline.git"]
+	path = .tmux/tmux-powerline.git
+	url = git://github.com/erikw/tmux-powerline.git
+[submodule ".tmux/tmux-colors-solarized.git"]
+	path = .tmux/tmux-colors-solarized.git
+	url = git://github.com/seebi/tmux-colors-solarized.git
+[submodule ".vim/bundle/general/vim-powerline.git"]
+	path = .vim/bundle/general/vim-powerline.git
+	url = git://github.com/Lokaltog/vim-powerline.git
