@@ -79,3 +79,6 @@
 [submodule ".vim/bundle/java/javacomplete.git"]
 	path = .vim/bundle/java/javacomplete.git
 	url = git://github.com/vim-scripts/javacomplete.git
+[submodule ".vim/bundle/general/ZoomWin.git"]
+	path = .vim/bundle/general/ZoomWin.git
+	url = git://github.com/vim-scripts/ZoomWin.git
