@@ -97,8 +97,12 @@
 	set showmode						" Show editing mode
 	set showmatch						" Show matching bracets when text indicator is over them
 
+	" enable powerline patched fonts
+	let g:Powerline_symbols = 'fancy'
+
 	if has('cmdline_info')
 		set ruler                       " show the cursor position all the time
+		set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids"
 		set showcmd                     " display partial commands
 	endif
 
@@ -133,7 +137,16 @@
 
 	if has('statusline')
 		set laststatus=2
-		set statusline=[%{&ff}]\ [%Y]\ [pos:%04l,%04v][%p%%]\ [len:%L]\ %<%F%m%r%h%w
+		"set statusline=[%{&ff}]\ [%Y]\ [pos:%04l,%04v][%p%%]\ [len:%L]\ %<%F%m%r%h%w
+
+		" Broken down into easily includeable segments
+		set statusline=%<%f\ " Filename
+		set statusline+=%w%h%m%r " Options
+		set statusline+=%{fugitive#statusline()} " Git Hotness
+		set statusline+=\ [%{&ff}/%Y] " filetype
+		set statusline+=\ [%{getcwd()}] " current dir
+		set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
+
 	endif
 
 	" from http://vim.wikia.com/wiki/Highlight_unwanted_spaces
