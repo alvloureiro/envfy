@@ -6,7 +6,7 @@ git submodule update --init
 git submodule foreach git checkout master
 
 pushd .vim/bundle/general/vim-powerline.git
-git checkout development
+git checkout develop
 popd
 
 for file in `ls -A -I .git -I .gitmodules -I setup.sh`;
