@@ -15,12 +15,10 @@
 	set vb t_vb=					" disable the fcking beep
 	"set visualbell					" visual bell instead of beeping
 
-	runtime bundle/vim-pathogen/autoload/pathogen.vim
-	call pathogen#infect('~/.vim/bundle/general')
-	call pathogen#infect('~/.vim/bundle/programming')
-	call pathogen#infect('~/.vim/bundle/c')
-	call pathogen#infect('~/.vim/bundle/java')
-	call pathogen#infect('~/.vim/bundle/javascript')
+
+	runtime unbundle/vim-unbundle/unbundle.vim
+	call Unbundle('unbundle/general/*')
+	call Unbundle('unbundle/programming/*')
 
 	set shortmess+=filmnrxoOtT								" abbrev. of messages (avoids 'hit enter')
 	set viewoptions=folds,options,cursor,unix,slash			" better unix / windows compatibility
