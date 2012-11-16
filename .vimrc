@@ -6,6 +6,12 @@
 	" This must be first, because it changes other options as a side effect.
 	set nocompatible
 
+
+	let g:mdf_disable_arrow_keys = 0
+	let g:mdf_space_instead_of_tab = 0
+	let g:mdf_tabsize = 4
+
+
 	set vb t_vb=					" disable the fcking beep
 	"set visualbell					" visual bell instead of beeping
 
@@ -79,6 +85,15 @@
 	" visual shifting (does not exit Visual mode)
 	vnoremap < <gv
 	vnoremap > >gv
+
+	if g:mdf_disable_arrow_keys
+		" You want to be part of the gurus? Time to get in serious stuff and stop using
+		" arrow keys.
+		noremap <left> <nop>
+		noremap <up> <nop>
+		noremap <down> <nop>
+		noremap <right> <nop>
+	endif
 " }
 
 " Appearance {
@@ -196,11 +211,23 @@
 	"set dictionary+=/usr/share/dict/words			" dictionary for word auto completion
 
 	" Formatting {
+		autocmd FileType Makefile set g:mdf_space_instead_of_tab = 0
+		if g:mdf_space_instead_of_tab
+			set expandtab					" tabs are spaces, not tabs"
+		endif
+
+		if !g:mdf_tabsize
+			let g:mdf_tabsize = 4
+		endif
+
+		" number of spaces to use for each step of indent
+		execute "set shiftwidth=".g:mdf_tabsize
+		" number of spaces that a <Tab> counts for
+		execute "set tabstop=".g:mdf_tabsize
+		" let backspace delete indent
+		execute "set softtabstop=".g:mdf_tabsize
+
 		set autoindent					" copy indent from current line
-		set shiftwidth=4				" number of spaces to use for each step of indent
-		"set expandtab					" tabs are spaces, not tabs"
-		set tabstop=4					" number of spaces that a <Tab> counts for
-		set softtabstop=4				" let backspace delete indent"
 		set smartindent					" smart autoindenting when starting a new line
 	" }
 
