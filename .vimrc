@@ -185,7 +185,11 @@
             if &term == 'xterm' || &term == 'screen'
                 set t_Co=256 " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
             endif
-            "set term=builtin_ansi " Make arrow and other keys work
+
+            " Set term to xterm to make <Home> and <End> keys work properly
+            if match($TERM, "screen*")!=-1
+                set term=xterm
+            endif
         endif
     " }
 " }
