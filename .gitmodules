@@ -1,9 +1,6 @@
 [submodule ".vim/ftbundle/c/clang_complete"]
 	path = .vim/ftbundle/c/clang_complete
 	url = git://github.com/Rip-Rip/clang_complete.git
-[submodule ".vim/unbundle/general/bufexplorer"]
-	path = .vim/unbundle/general/bufexplorer
-	url = git://github.com/corntrace/bufexplorer.git
 [submodule ".vim/unbundle/general/ctrlp.vim"]
 	path = .vim/unbundle/general/ctrlp.vim
 	url = git://github.com/kien/ctrlp.vim.git
