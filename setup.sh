@@ -5,7 +5,7 @@ sudo apt-get install vim-gtk clang exuberant-ctags git python-fontforge
 git submodule update --init
 git submodule foreach git checkout master
 
-pushd .vim/bundle/general/vim-powerline.git
+pushd .vim/unbundle/general/vim-powerline
 git checkout develop
 popd
 
@@ -38,11 +38,11 @@ if [ $? -ne 0  ]; then
 
 	pushd ~/tmp/ubuntu-font-family-0.80
 
-	chmod +x ~/.vim/bundle/general/vim-powerline.git/fontpatcher/fontpatcher
+	chmod +x ~/.vim/unbundle/general/vim-powerline/fontpatcher/fontpatcher
 
 	for f in `ls *.ttf`;
 	do
-		~/.vim/bundle/general/vim-powerline.git/fontpatcher/fontpatcher $f
+		~/.vim/unbundle/general/vim-powerline/fontpatcher/fontpatcher $f
 	done
 
 	fonts=`ls *Powerline.ttf`
