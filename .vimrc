@@ -188,7 +188,7 @@
 
             " Set term to xterm to make <Home> and <End> keys work properly
             if match($TERM, "screen*")!=-1
-                set term=xterm
+                set term=xterm-256color
             endif
         endif
     " }
