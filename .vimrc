@@ -98,9 +98,9 @@
 " Appearance {
     set background=dark
 
-    highlight PmenuSel ctermfg=black ctermbg=white
-
-    highlight Search ctermfg=white
+    highlight Pmenu guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
+    highlight PmenuSbar guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
+    highlight PmenuThumb guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 
     if has("gui_running")
         colorscheme evening
@@ -182,13 +182,10 @@
                 set transparency=5 " Make the window slightly transparent
             endif
         else
-            if &term == 'xterm' || &term == 'screen'
-                set t_Co=256 " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
-            endif
-
             " Set term to xterm to make <Home> and <End> keys work properly
-            if match($TERM, "screen*")!=-1
+            if match($TERM, "screen*") != -1 || match($TERM, "xterm*") != -1
                 set term=xterm-256color
+                set t_Co=256 " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
             endif
         endif
     " }

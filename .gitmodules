@@ -88,3 +88,6 @@
 [submodule ".vim/unbundle/vim-unbundle"]
 	path = .vim/unbundle/vim-unbundle
 	url = git://github.com/sunaku/vim-unbundle.git
+[submodule ".vim/unbundle/programming/TagHighlight"]
+	path = .vim/unbundle/programming/TagHighlight
+	url = git://github.com/magic-dot-files/TagHighlight.git
