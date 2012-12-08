@@ -380,7 +380,7 @@
     " }
 
     " ctrlp {
-        let g:ctrlp_working_path_mode = ra
+        let g:ctrlp_working_path_mode = 'ra'
         nnoremap <silent> <D-t> :CtrlP<CR>
         nnoremap <silent> <D-r> :CtrlPMRU<CR>
         let g:ctrlp_custom_ignore = {
