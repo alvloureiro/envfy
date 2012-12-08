@@ -37,9 +37,6 @@
 [submodule ".vim/ftbundle/markdown/vim-markdown"]
 	path = .vim/ftbundle/markdown/vim-markdown
 	url = git://github.com/tpope/vim-markdown.git
-[submodule ".vim/unbundle/programming/AutoClose--Alves"]
-	path = .vim/unbundle/programming/AutoClose--Alves
-	url = git://github.com/vim-scripts/AutoClose--Alves.git
 [submodule ".vim/unbundle/programming/a.vim"]
 	path = .vim/unbundle/programming/a.vim
 	url = git://github.com/vim-scripts/a.vim.git
