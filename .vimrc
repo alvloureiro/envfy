@@ -393,7 +393,7 @@
                         \ 1: ['.git', 'cd %s && git ls-files'],
                         \ 2: ['.hg', 'hg --cwd %s locate -I .'],
                         \ },
-                \ 'fallback': 'find %s/.. -type f'
+                \ 'fallback': 'find %s -type f'
                 \ }
     "}
 
