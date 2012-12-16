@@ -9,7 +9,7 @@ pushd .vim/unbundle/general/vim-powerline
 git checkout develop
 popd
 
-for file in `ls -A -I .git -I .gitmodules -I setup.sh`;
+for file in `ls -A -I .git -I .gitmodules -I setup.sh -I .kde`;
 do
 	echo $PWD/$file
 
