@@ -11,6 +11,7 @@
     let g:mdf_disable_arrow_keys = 0
     let g:mdf_space_instead_of_tab = 1
     let g:mdf_tabsize = 4
+    let g:mdf_listchars = 1
 
 
     set vb t_vb=                " disable the fcking beep
@@ -133,8 +134,10 @@
 
     set whichwrap=b,s,h,l,<,>,[,]                       " backspace and cursor keys wrap to
 
-    set list
-    set listchars=tab:»·,trail:·,extends:#,nbsp:.       " strings to use in 'list' mode
+    if g:mdf_listchars
+        set list
+        set listchars=tab:»·,trail:·,extends:#,nbsp:.       " strings to use in 'list' mode
+    endif
 
     "set scrolljump=5                                   " lines to scroll when cursor leaves screen
     set scrolloff=5                                     " always have some lines of text when scrolling
