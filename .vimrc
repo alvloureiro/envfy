@@ -1,100 +1,144 @@
 " .vimrc inspired by:
-"        https://github.com/spf13/spf13-vim
-"        https://github.com/zaiste/vimified
+"        https://github.com/gmarik/Vundle.vim
 
-" General {
-    " Use Vim settings, rather then Vi settings.
-    " This must be first, because it changes other options as a side effect.
-    set nocompatible
+set nocompatible
+filetype off
 
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-    let g:mdf_disable_arrow_keys = 0
-    let g:mdf_space_instead_of_tab = 1
-    let g:mdf_tabsize = 4
-    let g:mdf_listchars = 1
+" required
+Plugin 'gmarik/Vundle.vim'
 
+" airline
+Plugin 'bling/vim-airline'
+let g:airline#extensions#tabline#enabled = 1
 
-    set vb t_vb=                " disable the fcking beep
-    "set visualbell             " visual bell instead of beeping
+" syntastic
+Plugin 'scrooloose/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
-    runtime unbundle/vim-unbundle/unbundle.vim
-    call Unbundle('unbundle/general/*')
-    call Unbundle('unbundle/programming/*')
+" Javascript
+Plugin 'pangloss/vim-javascript'
 
-    set shortmess+=filmnrxoOtT                              " abbrev. of messages (avoids 'hit enter')
-    set viewoptions=folds,options,cursor,unix,slash         " better unix / windows compatibility
-    "set virtualedit=onemore                                " allow for cursor beyond last character
-    set history=1000                                        " keep 1000 lines of command line history
-    "set spell                                              " spell checking on
-    set hidden                                              " allow buffer switching without saving
-    set tabpagemax=15                                       " only show 15 tabs
+" jellybeans theme plugin
+Plugin 'nanotech/jellybeans.vim'
+let g:jellybeans_overrides = {
+            \    'Todo': { 'guifg': '303030', 'guibg': 'f0f000',
+            \              'ctermfg': 'Black', 'ctermbg': 'Yellow',
+            \              'attr': 'bold' },
+            \}
 
-    set backup                                              " keep a backup file
+" json
+Plugin 'elzr/vim-json'
 
-    " The current directory is the directory of the file in the current window.
-    "if has("autocmd")
-    "  autocmd BufEnter * :lchdir %:p:h
-    "endif
+" tagbar
+Plugin 'majutsushi/tagbar'
 
-    autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+" nercommenter
+Plugin 'scrooloose/nercommenter'
 
-    set browsedir=current           " which directory to use for the file browser
+" fugitive
+Plugin 'tpope/vim-fugitive'
 
-    set popt=left:8pc,right:3pc     " print options
+call vundle#end()
+filetype plugin indent on
 
-    if version >= 730
-        if has("autocmd")
-            " Autosave & Load Views.
-            autocmd BufWritePost,WinLeave,BufWinLeave ?* if MakeViewCheck() | mkview | endif
-            autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
-        endif
-    else
-        " When editing a file, always jump to the last known cursor position.
-        " Don't do it when the position is invalid or when inside an event handler
-        " (happens when dropping a file on gvim).
-        if has("autocmd")
-          autocmd BufReadPost *
-                \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                \   exe "normal! g`\"" |
-                \ endif
-        endif " has("autocmd")
+" To ignore plugin indent changes, instead use:
+" "filetype plugin on
+" "
+" " Brief help
+" " :PluginList       - lists configured plugins
+" " :PluginInstall    - installs plugins; append `!` to update or just
+" :PluginUpdate
+" " :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" " :PluginClean      - confirms removal of unused plugins; append `!` to
+" auto-approve removal
+" "
+" " see :h vundle for more details or wiki for FAQ
+" " Put your non-Plugin stuff after this line
+
+let g:mdf_space_instead_of_tab = 1
+let g:mdf_tabsize = 4
+let g:mdf_listchars = 1
+
+set vb t_vb=                " disable the fcking beep
+set viewoptions=folds,options,cursor,unix,slash         " better unix / windows compatibility
+set history=1000                                        " keep 1000 lines of command line history
+set hidden                                              " allow buffer switching without saving
+set tabpagemax=15                                       " only show 15 tabs
+
+set backup                                              " keep a backup file
+
+" The current directory is the directory of the file in the current window.
+"if has("autocmd")
+"  autocmd BufEnter * :lchdir %:p:h
+"endif
+
+autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+
+set browsedir=current           " which directory to use for the file browser
+
+set popt=left:8pc,right:3pc     " print options
+
+if version >= 730
+    if has("autocmd")
+        " Autosave & Load Views.
+        autocmd BufWritePost,WinLeave,BufWinLeave ?* if MakeViewCheck() | mkview | endif
+        autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
     endif
+else
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    if has("autocmd")
+        autocmd BufReadPost *
+                    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                    \   exe "normal! g`\"" |
+                    \ endif
+    endif " has("autocmd")
+endif
 
-    " When vimrc is edited, reload it
-    autocmd! BufWritePost vimrc source ~/.vimrc
+" When vimrc is edited, reload it
+autocmd! BufWritePost vimrc source ~/.vimrc
 
 
-    " Stupid shift key fixes
-    if has("user_commands")
-        command! -bang -nargs=* -complete=file E e<bang> <args>
-        command! -bang -nargs=* -complete=file W w<bang> <args>
-        command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-        command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-        command! -bang Wa wa<bang>
-        command! -bang WA wa<bang>
-        command! -bang Q q<bang>
-        command! -bang QA qa<bang>
-        command! -bang Qa qa<bang>
-    endif
-    cmap Tabe tabe
+" Stupid shift key fixes
+if has("user_commands")
+    command! -bang -nargs=* -complete=file E e<bang> <args>
+    command! -bang -nargs=* -complete=file W w<bang> <args>
+    command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+    command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+    command! -bang Wa wa<bang>
+    command! -bang WA wa<bang>
+    command! -bang Q q<bang>
+    command! -bang QA qa<bang>
+    command! -bang Qa qa<bang>
+endif
+cmap Tabe tabe
 
-    " For when you forget to sudo.. Really Write the file.
-    cmap w!! w !sudo tee % >/dev/null
+" For when you forget to sudo.. Really Write the file.
+cmap w!! w !sudo tee % >/dev/null
 
-    " visual shifting (does not exit Visual mode)
-    vnoremap < <gv
-    vnoremap > >gv
+" visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
 
-    if g:mdf_disable_arrow_keys
-        " You want to be part of the gurus? Time to get in serious stuff and stop using
-        " arrow keys.
-        noremap <left> <nop>
-        noremap <up> <nop>
-        noremap <down> <nop>
-        noremap <right> <nop>
-    endif
-" }
+if g:mdf_disable_arrow_keys
+    " You want to be part of the gurus? Time to get in serious stuff and stop using
+    " arrow keys.
+    noremap <left> <nop>
+    noremap <up> <nop>
+    noremap <down> <nop>
+    noremap <right> <nop>
+endif
 
 " Appearance {
     set background=dark
@@ -112,16 +156,11 @@
     set showmode                        " Show editing mode
     set showmatch                       " Show matching bracets when text indicator is over them
 
-    " enable powerline patched fonts
-    let g:Powerline_symbols = 'fancy'
-
     if has('cmdline_info')
         set ruler                       " show the cursor position all the time
         set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids"
         set showcmd                     " display partial commands
     endif
-
-    set cursorline                      " Highlighting that moves with the cursor
 
     set splitright
 
@@ -270,11 +309,6 @@
     endif
 " }
 
-" Abreviations {
-    ab belemrev Reviewed-by: Rodrigo Belem <rodrigo.belem@gmail.com>
-    ab belemsig Signed-off-by: Rodrigo Belem <rodrigo.belem@gmail.com>
-" }
-
 " Plugins {
 
     " PIV {
@@ -312,12 +346,6 @@
     " Make it so AutoCloseTag works for xml and xhtml files as well
         au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
         nmap <Leader>ac <Plug>ToggleAutoCloseMappings
-    " }
-
-    " SnipMate {
-        " Setting the author var
-        " If forking, please overwrite in your .vimrc.local file
-        let g:snips_author = 'Rodrigo Belem <rodrigo.belem@gmail.com>'
     " }
 
     " NerdTree {
