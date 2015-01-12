@@ -1,9 +1,17 @@
 #!/bin/bash
 
-sudo apt-get install vim-gtk clang exuberant-ctags git python-fontforge unzip
+echo -e "Installing envfy on your home folder...\n"
+echo -e "Updating the package manager...\n"
 
+sudo apt-get update
+echo -e "Installing necessary packages..."
+sudo apt-get install build-essential cmake vim vim-common vim-gtk\
+                     clang exuberant-ctags git python-fontforge python-dev unzip
+
+
+echo -e "Creating symbolic links for default configuration files..."
 # Linking the configuration files
-for file in `ls -A -I .git -I .gitmodules -I setup.sh -I .kde`;
+for file in `ls -A -I .git -I setup.sh`;
 do
     echo $PWD/$file
 
@@ -20,6 +28,7 @@ do
 
     ln -sf $PWD/$file $HOME
 done
+
 
 git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 
