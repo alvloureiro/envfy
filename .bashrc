@@ -110,7 +110,7 @@ alias make=colormake
 #export LD_LIBRARY_PATH=/home/loureiro/projects/qt-mobility/install:$LD_LIBRARY_PATH
 
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
-export COCOS_CONSOLE_ROOT=/home/loureiro/projects/cocos2d-x/tools/cocos2d-console/bin
+export COCOS_CONSOLE_ROOT=$HOME/cocos2d-x/tools/cocos2d-console/bin
 export PATH=$COCOS_CONSOLE_ROOT:$PATH
 
 export USE_CCACHE=1
