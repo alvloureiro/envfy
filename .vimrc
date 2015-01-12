@@ -43,7 +43,7 @@ Plugin 'elzr/vim-json'
 Plugin 'majutsushi/tagbar'
 
 " nercommenter
-Plugin 'scrooloose/nercommenter'
+Plugin 'scrooloose/nerdcommenter'
 
 " fugitive
 Plugin 'tpope/vim-fugitive'
