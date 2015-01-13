@@ -48,6 +48,9 @@ Plugin 'scrooloose/nerdcommenter'
 " fugitive
 Plugin 'tpope/vim-fugitive'
 
+" MatchTagAlways
+Plugin 'Valloric/MatchTagAlways'
+
 call vundle#end()
 filetype plugin indent on
 
