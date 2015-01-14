@@ -134,15 +134,6 @@ cmap w!! w !sudo tee % >/dev/null
 vnoremap < <gv
 vnoremap > >gv
 
-if g:mdf_disable_arrow_keys
-    " You want to be part of the gurus? Time to get in serious stuff and stop using
-    " arrow keys.
-    noremap <left> <nop>
-    noremap <up> <nop>
-    noremap <down> <nop>
-    noremap <right> <nop>
-endif
-
 " Appearance {
     set background=dark
 
