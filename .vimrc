@@ -12,18 +12,9 @@ Plugin 'gmarik/Vundle.vim'
 
 " airline
 Plugin 'bling/vim-airline'
-let g:airline#extensions#tabline#enabled = 1
 
 " syntastic
 Plugin 'scrooloose/syntastic'
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 " Javascript
 Plugin 'pangloss/vim-javascript'
@@ -68,9 +59,21 @@ filetype plugin indent on
 " " see :h vundle for more details or wiki for FAQ
 " " Put your non-Plugin stuff after this line
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+set number
 let g:mdf_space_instead_of_tab = 1
 let g:mdf_tabsize = 4
 let g:mdf_listchars = 1
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 set vb t_vb=                " disable the fcking beep
 set viewoptions=folds,options,cursor,unix,slash         " better unix / windows compatibility
@@ -185,19 +188,19 @@ vnoremap > >gv
         set foldopen-=undo                      " don't open folds when you undo stuff
     " }
 
-    if has('statusline')
-        set laststatus=2
-        "set statusline=[%{&ff}]\ [%Y]\ [pos:%04l,%04v][%p%%]\ [len:%L]\ %<%F%m%r%h%w
+   if has('statusline')
+       set laststatus=2
+       "set statusline=[%{&ff}]\ [%Y]\ [pos:%04l,%04v][%p%%]\ [len:%L]\ %<%F%m%r%h%w
 
-        " Broken down into easily includeable segments
-        set statusline=%<%f\                        " Filename
-        set statusline+=%w%h%m%r                    " Options
-        set statusline+=%{fugitive#statusline()}    " Git Hotness
-        set statusline+=\ [%{&ff}/%Y]               " filetype
-        set statusline+=\ [%{getcwd()}]             " current dir
-        set statusline+=%=%-14.(%l,%c%V%)\ %p%%     " Right aligned file nav info
+       " Broken down into easily includeable segments
+       set statusline=%<%f\                        " Filename
+       set statusline+=%w%h%m%r                    " Options
+       set statusline+=%{fugitive#statusline()}    " Git Hotness
+       set statusline+=\ [%{&ff}/%Y]               " filetype
+       set statusline+=\ [%{getcwd()}]             " current dir
+       set statusline+=%=%-14.(%l,%c%V%)\ %p%%     " Right aligned file nav info
 
-    endif
+   endif
 
     " from http://vim.wikia.com/wiki/Highlight_unwanted_spaces
     if has("autocmd")
@@ -228,10 +231,6 @@ vnoremap > >gv
 " }
 
 " Editing {
-    " Enable file type detection. Use the default filetype settings.
-    " Also load indent files, to automatically do language-dependent indenting.
-    filetype plugin indent on
-
     " Switch syntax highlighting on, when the terminal has colors
     " Also switch on highlighting the last used search pattern.
     if &t_Co > 2 || has("gui_running")
@@ -304,12 +303,6 @@ vnoremap > >gv
 " }
 
 " Plugins {
-
-    " PIV {
-        let g:DisableAutoPHPFolding = 0
-        let g:PIVAutoClose = 0
-    " }
-
     " Misc {
         let g:NERDShutUp=1
         let b:match_ignorecase = 1
@@ -336,12 +329,6 @@ vnoremap > >gv
         set tags=./tags;/,~/.vimtags
     " }
 
-    " AutoCloseTag {
-    " Make it so AutoCloseTag works for xml and xhtml files as well
-        au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
-        nmap <Leader>ac <Plug>ToggleAutoCloseMappings
-    " }
-
     " NerdTree {
         map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
         map <leader>e :NERDTreeFind<CR>
@@ -353,47 +340,6 @@ vnoremap > >gv
         let NERDTreeQuitOnOpen=1
         let NERDTreeShowHidden=1
         let NERDTreeKeepTreeInNewTab=1
-    " }
-
-    " Tabularize {
-        if exists(":Tabularize")
-            nmap <Leader>a= :Tabularize /=<CR>
-            vmap <Leader>a= :Tabularize /=<CR>
-            nmap <Leader>a: :Tabularize /:<CR>
-            vmap <Leader>a: :Tabularize /:<CR>
-            nmap <Leader>a:: :Tabularize /:\zs<CR>
-            vmap <Leader>a:: :Tabularize /:\zs<CR>
-            nmap <Leader>a, :Tabularize /,<CR>
-            vmap <Leader>a, :Tabularize /,<CR>
-            nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-            vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-
-            " The following function automatically aligns when typing a
-            " supported character
-            inoremap <silent> <Bar> <Bar><Esc>:call <SID>align()<CR>a
-
-            function! s:align()
-                let p = '^\s*|\s.*\s|\s*$'
-                if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-                    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-                    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-                    Tabularize/|/l1
-                    normal! 0
-                    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-                endif
-            endfunction
-
-        endif
-    " }
-
-    " Session List {
-        set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-        nmap <leader>sl :SessionList<CR>
-        nmap <leader>ss :SessionSave<CR>
-    " }
-
-    " Buffer explorer {
-        nmap <leader>b :BufExplorer<CR>
     " }
 
     " JSON {
@@ -442,66 +388,6 @@ vnoremap > >gv
         nnoremap <silent> <leader>gp :Git push<CR>
     "}
 
-    " neocomplcache {
-        " Disable AutoComplPop.
-        let g:acp_enableAtStartup = 0
-        " Use neocomplcache.
-        let g:neocomplcache_enable_at_startup = 1
-        " Use smartcase.
-        let g:neocomplcache_enable_smart_case = 1
-        " Use camel case completion.
-        let g:neocomplcache_enable_camel_case_completion = 1
-        " Use underbar completion.
-        let g:neocomplcache_enable_underbar_completion = 1
-        " Set minimum syntax keyword length.
-        let g:neocomplcache_min_syntax_length = 3
-        let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-        " Define dictionary.
-        let g:neocomplcache_dictionary_filetype_lists = {
-            \ 'default' : '',
-            \ 'vimshell' : $HOME.'/.vimshell_hist',
-            \ 'scheme' : $HOME.'/.gosh_completions'
-            \ }
-
-        " Define keyword.
-        if !exists('g:neocomplcache_keyword_patterns')
-          let g:neocomplcache_keyword_patterns = {}
-        endif
-        let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-        " Plugin key-mappings.
-        imap <C-k> <Plug>(neocomplcache_snippets_expand)
-        smap <C-k> <Plug>(neocomplcache_snippets_expand)
-        inoremap <expr><C-g> neocomplcache#undo_completion()
-        inoremap <expr><C-l> neocomplcache#complete_common_string()
-
-        " SuperTab like snippets behavior.
-        "imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-
-        " <CR>: close popup
-        " <s-CR>: close popup and save indent.
-        inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-        inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup() "\<CR>" : "\<CR>"
-        " <TAB>: completion.
-        inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-
-        " <C-h>, <BS>: close popup and delete backword char.
-        inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-        inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-        inoremap <expr><C-y> neocomplcache#close_popup()
-        inoremap <expr><C-e> neocomplcache#cancel_popup()
-
-        " AutoComplPop like behavior.
-        "let g:neocomplcache_enable_auto_select = 0
-
-        " Shell like behavior(not recommended).
-        "set completeopt+=longest
-        "let g:neocomplcache_enable_auto_select = 1
-        "let g:neocomplcache_disable_auto_complete = 1
-        "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
-        "inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-
         " Enable omni completion.
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
         autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -509,45 +395,6 @@ vnoremap > >gv
         autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
         autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
         autocmd FileType java setlocal omnifunc=javacomplete#Complete
-
-        " Enable heavy omni completion.
-        if !exists('g:neocomplcache_omni_patterns')
-            let g:neocomplcache_omni_patterns = {}
-        endif
-        let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-        "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-        let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-        let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-        let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-
-        " For snippet_complete marker.
-        if has('conceal')
-            set conceallevel=2 concealcursor=i
-        endif
-
-        "let g:neocomplcache_enable_auto_delimiter = 1
-
-        if !exists('g:neocomplcache_force_omni_patterns')
-          let g:neocomplcache_force_omni_patterns = {}
-        endif
-        let g:neocomplcache_force_overwrite_completefunc = 1
-        let g:neocomplcache_force_omni_patterns.c =
-              \ '[^.[:digit:] *\t]\%(\.\|->\)'
-        let g:neocomplcache_force_omni_patterns.cpp =
-              \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-        let g:clang_complete_auto = 0
-        let g:clang_auto_select = 0
-        let g:clang_use_library   = 0
-    " }
-
-    " clang_complete {
-        let g:clang_snippets = 1
-        let g:clang_snippets_engine = 'clang_complete'
-    " }
-
-    " UndoTree {
-        nnoremap <c-u> :UndotreeToggle<CR>
-    " }
 " }
 
 " Functions {
