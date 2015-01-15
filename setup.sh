@@ -11,7 +11,7 @@ sudo apt-get install build-essential cmake vim vim-common vim-gtk\
 
 echo -e "Creating symbolic links for default configuration files..."
 # Linking the configuration files
-for file in `ls -A -I .git -I setup.sh`;
+for file in `ls -A -I .git -I setup.sh -I README.md`;
 do
     echo $PWD/$file
 
@@ -33,3 +33,10 @@ done
 git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 
 vim +PluginInstall +qall
+
+echo -e "Installing powerline fonts...\n"
+POWERLINE_FONTS=$HOME/powerline-fonts
+mkdir -p $POWERLINE_FONTS
+git clone https://github.com/powerline/fonts.git $POWERLINE_FONTS
+cd $POWERLINE_FONTS
+./install.sh
