@@ -42,6 +42,9 @@ Plugin 'tpope/vim-fugitive'
 " MatchTagAlways
 Plugin 'Valloric/MatchTagAlways'
 
+" CMake plugin
+Plugin 'jalcine/cmake.vim'
+
 call vundle#end()
 filetype plugin indent on
 
