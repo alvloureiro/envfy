@@ -34,7 +34,7 @@ do
     ln -sf $PWD/$file $HOME
 done
 
-
+# getting the vundle vim plugin
 git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 
 vim +PluginInstall +qall

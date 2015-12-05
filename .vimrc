@@ -45,6 +45,9 @@ Plugin 'Valloric/MatchTagAlways'
 " CMake plugin
 Plugin 'jalcine/cmake.vim'
 
+" Arduino plugin
+Plugin 'sudar/vim-arduino-syntax'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -474,3 +477,5 @@ vnoremap > >gv
     endfunction
     call InitializeDirectories()
 " }
+
+autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
