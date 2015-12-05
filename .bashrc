@@ -116,7 +116,7 @@ export PATH=$COCOS_CONSOLE_ROOT:$PATH
 export USE_CCACHE=1
 export CCACHE_DIR=$HOME/.ccache
 
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$HOME/android-sdks/platform-tools:$PATH
 # Enable programmable sdb completion features.
 if [ -f ~/.sdb/.sdb-completion.bash ]; then
  source ~/.sdb/.sdb-completion.bash
