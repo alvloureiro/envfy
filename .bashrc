@@ -109,14 +109,23 @@ export EDITOR="/usr/bin/vim"
 alias make=colormake
 #export LD_LIBRARY_PATH=/home/loureiro/projects/qt-mobility/install:$LD_LIBRARY_PATH
 
-# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
-export COCOS_CONSOLE_ROOT=$HOME/cocos2d-x/tools/cocos2d-console/bin
-export PATH=$COCOS_CONSOLE_ROOT:$PATH
+if [ -d "$HOME/bin" ] ; then
+    export PATH=$HOME/bin:$PATH
+fi
 
-export USE_CCACHE=1
-export CCACHE_DIR=$HOME/.ccache
+# Setting cocos environment variables if it exists
+if [ -d "$HOME/cocos2d-x" ] ; then
+    export COCOS_HOME="$HOME/cocos2d-x"
+    export COCOS_CONSOLE_ROOT="$COCOS_HOME/tools/cocos2d-console/bin"
+    export PATH=$COCOS_CONSOLE_ROOT:$PATH
+fi
 
-export PATH=$HOME/bin:$HOME/android-sdks/platform-tools:$PATH
+if [ ! dpkg-query -W -f='${Status} ${Version}\n' cache 2> /dev/null ] ; then
+    export USE_CCACHE=1
+    export CCACHE_DIR=$HOME/.ccache
+fi
+
+#export PATH=$HOME/bin:$HOME/android-sdks/platform-tools:$PATH
 # Enable programmable sdb completion features.
 if [ -f ~/.sdb/.sdb-completion.bash ]; then
  source ~/.sdb/.sdb-completion.bash
