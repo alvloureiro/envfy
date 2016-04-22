@@ -29,4 +29,4 @@ Currently the plugin list contains:
 
 ## Install
 To install you just need to call
-$ ./setup.sh
+$ ./setup.sh --install

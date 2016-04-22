@@ -1,57 +1,108 @@
 #!/bin/bash
 
-current_dir=`pwd`
+if [ $# -eq 0 ]
+then
+    echo -e "Please use setup.sh with --install or --uninstall\n"
+    exit 1
+elif [ $1 == "--install" ]
+then
+    CURRENT_DIR=`pwd`
+    POWERLINEFONTS_DIR=$HOME/powerline-fonts
+    POWERLINESYMBOLS_DIR=$HOME/.config/fontconfig/conf.d
+    LOCALPOWERLINESYMBOLS_DIR=$CURRENT_DIR/.config/fontconfig/conf.d
+    POWERLINECONF_PATH=$LOCALPOWERLINESYMBOLS_DIR/10-powerline-symbols.conf
 
-echo -e "Installing envfy on your home folder...\n"
-echo -e "Updating the package manager...\n"
+    echo -e "Installing envfy on your home folder...\n"
+    echo -e "Updating the package manager...\n"
 
-sudo apt-get update > /dev/null
-echo -e "Installing necessary packages..."
-sudo apt-get install build-essential cmake vim vim-common vim-gtk\
-                     clang exuberant-ctags git python-fontforge python-dev unzip \
-                     > /dev/null
-
-
-echo -e "Creating symbolic links for default configuration files..."
-# Linking the configuration files
-for file in `ls -A -I .git -I setup.sh -I README.md -I .config`;
-do
-
-    if [ \( $PWD/$file == ".gitconfig" \) -a \( -f $HOME/.gitconfig \) ]; then
-        echo "git already configured..."
-        continue
-    elif [ $PWD/$file == `readlink -f $HOME/$file` ]; then
-        echo "skipping..."
-        continue
-    elif [ -e $HOME/$file ]; then
-        echo "backuping..."
-        mv $HOME/$file $HOME/$file-backup-`date +%Y%m%d%H%M%S`
-        echo "replacing..."
-    else
-        echo "linking..."
+    sudo apt-get update > /dev/null
+    if [ $? -eq 1 ]
+    then
+        echo -e "Could not update the package manager...\n"
+        exit 1
     fi
 
-    ln -sf $PWD/$file $HOME
-done
+    echo -e "Installing necessary packages..."
+    sudo apt-get install build-essential cmake vim vim-common vim-gtk\
+        clang exuberant-ctags git python-fontforge python-dev unzip \
+        > /dev/null
+    if [ $? -eq 1 ]
+    then
+        echo "Failed when try install packages...\n"
+        exit 1
+    fi
 
-# getting the vundle vim plugin
-git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+    echo -e "Creating symbolic links for default configuration files..."
+    # Linking the configuration files
+    for file in `ls -A -I .git -I setup.sh -I README.md -I .config`;
+    do
 
-vim +PluginInstall +qall
+        if [ \( $PWD/$file == ".gitconfig" \) -a \( -f $HOME/.gitconfig \) ]; then
+            echo "git already configured..."
+            continue
+        elif [ $PWD/$file == `readlink -f $HOME/$file` ]; then
+            echo "skipping..."
+            continue
+        elif [ -e $HOME/$file ]; then
+            echo "backuping..."
+            mv $HOME/$file $HOME/$file-backup-`date +%Y%m%d%H%M%S`
+            echo "replacing..."
+        else
+            echo "linking..."
+        fi
 
-echo -e "Installing powerline fonts...\n"
-powerline_fonts=$HOME/powerline-fonts
-mkdir -p $powerline_fonts
-git clone https://github.com/powerline/fonts.git $powerline_fonts
-cd $powerline_fonts
-./install.sh
+        ln -sf $PWD/$file $HOME
+    done
 
-powerline_symbols_dir=$HOME/.config/fontconfig/conf.d
-local_powerline_symbols_dir=$current_dir/.config/fontconfig/conf.d
-powerline_conf_path=$local_powerline_symbols_dir/10-powerline-symbols.conf
+    # getting the vundle vim plugin
+    echo -e "Cloning vundle vim's plugin...\n"
+    git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+    if [ $? -eq 1 ]
+    then
+        echo -e "Could not clone vundle vim's plugin...\n"
+        exit 1
+    fi
 
-if ! [ -d $powerline_symbols_dir ]; then
-    mkdir -p $powerline_symbols_dir
+    vim +PluginInstall +qall
+
+    echo -e "Installing powerline fonts...\n"
+    mkdir -p $POWERLINEFONTS_DIR
+    git clone https://github.com/powerline/fonts.git $POWERLINEFONTS_DIR
+    cd $POWERLINEFONTS_DIR
+    ./install.sh
+
+    if ! [ -d $POWERLINESYMBOLS_DIR ]; then
+        mkdir -p $POWERLINESYMBOLS_DIR
+    fi
+
+    cp $POWERLINECONF_PATH $POWERLINESYMBOLS_DIR
+elif [ $1 == "--uninstall" ]
+then
+    echo -e "Uninstalling envfy from your environment...\n"
+
+    for file in `ls -A -I .git -I setup.sh -I README.md -I .config`;
+    do
+
+        if [ \( $PWD/$file == ".gitconfig" \) -a \( -f $HOME/.gitconfig \) ]; then
+            echo -e "removing .gitconfig file from your environment...\n"
+            rm $HOME/.gitconfig
+        elif [ $PWD/$file == `readlink -f $HOME/$file` ]; then
+            echo -e "removing $file from your environment...\n"
+            rm $HOME/$file
+        fi
+    done
+
+    read -p "Would you like to remove all pre-installed packages?[y/n]" answer
+    if [ $answer == 'y' ]
+    then
+        sudo apt-get remove --purge build-essential cmake vim vim-common vim-gtk\
+        clang exuberant-ctags git python-fontforge python-dev unzip > /dev/null
+        echo -e "All packages were removed...\n"
+    fi
+else
+    echo -e "Invalid option $1\n"
+    echo -e "Please use \"setup.sh\" with --install or --uninstall\n"
+    exit 1
 fi
 
-cp $powerline_conf_path $powerline_symbols_dir
+exit 0
