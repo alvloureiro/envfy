@@ -48,6 +48,9 @@ Plugin 'jalcine/cmake.vim'
 " Arduino plugin
 Plugin 'sudar/vim-arduino-syntax'
 
+" QML plugin
+Plugin 'peterhoeg/vim-qml'
+
 call vundle#end()
 filetype plugin indent on
 
