@@ -1,5 +1,5 @@
 # envfy
-It is a set of pre-configured dotfiles aiming to help you manage your dev environment.
+It is a set of pre-configured dotfiles aiming to help you manage your dev environment. It is a fork from magic-dot-files project.
 
 ## Note:
 envfy will try to install the following packages:
@@ -30,3 +30,7 @@ Currently the plugin list contains:
 ## Install
 To install you just need to call
 $ ./setup.sh --install
+
+## Uninstall
+To remove and clean your environment just type
+$ ./setup.sh --uninstall
