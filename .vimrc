@@ -51,6 +51,9 @@ Plugin 'sudar/vim-arduino-syntax'
 " QML plugin
 Plugin 'peterhoeg/vim-qml'
 
+" Qt resources plugin
+Plugin 'EdTsft/vim-qrc'
+
 call vundle#end()
 filetype plugin indent on
 
