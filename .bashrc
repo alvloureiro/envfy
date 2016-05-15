@@ -131,3 +131,7 @@ if [ -f ~/.sdb/.sdb-completion.bash ]; then
  source ~/.sdb/.sdb-completion.bash
 fi
 
+if [ -d "$HOME/Android-SDK" ] ; then
+    export PATH=$HOME/Android-SDK/Sdk/platform-tools:$PATH
+fi
+
